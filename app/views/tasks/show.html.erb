@@ -1,0 +1,31 @@
+<%# 資訊輸入錯誤訊息 %>
+<% if @task.errors.present? %>
+  <ul>
+    <% @task.errors.each do |errors, message| %>
+    <li><%= "#{errors} #{message}" %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<div class = "form-container">
+  <%= form_for @task do |f| %>
+    <div class ="form-group">
+
+      <%= f.label :checked, "Job Done" %>
+      <%= f.check_box :checked %>
+      <Br>
+      <%= f.label :task_name, "Task Name" %>
+      <%= f.text_area :task_name, class: "form-control" %>
+
+      <%= f.label :due_date, "Due Date" %>
+      <%= f.text_field :due_date, class: "form-control" %>
+
+      <%= f.label :note, "Note" %>
+      <%= f.text_area :note, class: "form-control" %>
+    </div>
+    <%= f.submit "Update", class: "col-lg"  %>
+    <%= link_to 'Back To My List', tasks_path %>
+
+</div>
+<% end %>
